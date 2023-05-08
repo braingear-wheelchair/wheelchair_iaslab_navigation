@@ -1,0 +1,9 @@
+global_frame: odom
+#robot_base_frame: base_link
+rolling_window: true
+
+plugins:
+#  - {name: obstacle_layer,  type: "costmap_2d::ObstacleLayer"}
+ - {name: laser_layer_temp,     type: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"}
+ - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+
