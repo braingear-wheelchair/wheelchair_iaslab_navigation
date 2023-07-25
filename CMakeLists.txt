@@ -13,7 +13,7 @@ catkin_package()
 
 catkin_package(
   INCLUDE_DIRS 
-	include
+	#include
   ${catkin_INCLUDE_DIRS}
   LIBRARIES 
 	${PROJECT_NAME}
@@ -21,7 +21,7 @@ catkin_package(
 )
 
 include_directories(
-  include
+  #include
   ${catkin_INCLUDE_DIRS}
 )
 

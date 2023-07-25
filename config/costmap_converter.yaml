@@ -12,7 +12,7 @@ MyLocalPlanner:
   ## Configure plugins (namespace move_base/costmap_to_lines or move_base/costmap_to_polygons)
   ## costmap_converter/CostmapToLinesDBSRANSAC, costmap_converter/CostmapToLinesDBSMCCH, costmap_converter/CostmapToPolygonsDBSMCCH
   costmap_converter/CostmapToLinesDBSRANSAC:
-    cluster_max_distance: 0.04 # 0.4
+    cluster_max_distance: 0.06 # 0.4
     cluster_min_pts: 2
     ransac_inlier_distance: 0.4
     ransac_min_inliers: 10
