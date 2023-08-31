@@ -4,17 +4,48 @@
     <arg name="prefix" default="wcias_"/>
     <arg name="static_map" default="false"/>
     
-    
     <arg name="base_global_planner" default="navfn/NavfnROS"/>
-    <arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS"/> 
-    <!-- <arg name="base_local_planner" default="base_local_planner/TrajectoryPlannerROS"/> -->
+    <arg name="base_local_planner" default="teb_local_planner/TebLocalPlannerROS"/> 
+
+    <!-- 
+        Other local planner: 
+        base_local_planner/TrajectoryPlannerROS 
+            - poco smoot:
+                - tende a mettere prima la "coda" in posizione, poi andare avati
+                - tende ad andate indietro
+                - fa curve globali non ottime
+            - buona risposta agli ostacoli dinamici
+
+        dwa_local_planner/DWAPlannerROS   
+            - corregge abbastanza bene gli errori
+            - pensa di dover stare troppo verso la traiettoria principale:
+                - tanti colpi di coda
+            - poco reattivo agli ostacoli dinamici
+
+        eband_local_planner/EBandPlannerROS 
+            - non sono riuscito a farlo andare
+
+        teb_local_planner/TebLocalPlannerROS
+            - va indietro troppo facilmente
+            - curve un po troppo strette (ma belle)
+            - tiene poco conto della storia quano si riadatta
+            - non tiene conto che certe velocità non possono essere usate dal robot
+            - indecisione sugli ostacoli dinamici
+
+        mpc_local_planner/MpcLocalPlannerROS
+            - non sono riuscito a farlo andare
+
+            - la mia implementazione fa belle curve, ma se vuole fare un overcome degli ostacoli dinamici aumenta di molto il 
+              costo computazionale (troppo) 
+
+    -->
 
     <arg name="global_frame" default="$(arg prefix)map"/>
     <arg name="odom_frame" default="$(arg prefix)odom"/>
     <arg name="base_frame" default="$(arg prefix)base_footprint"/>
 
     <arg name="cmd_vel_topic" default="cmd_vel"/> <!-- using twist mux -->
-    <arg name="odom_topic" default="wcias_controller/odom"/>
+    <arg name="odom_topic" default="/odometry/filtered"/>
 
 
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
@@ -32,7 +63,7 @@
         <param name="global_costmap/obstacle_layer/scan/sensor_frame" value="$(arg prefix)laser_link"/>
         <param name="local_costmap/obstacle_layer/scan/sensor_frame" value="$(arg prefix)laser_link"/>
         -->
-        
+
         <!-- local costmap, needs size -->
         <rosparam file="$(find wheelchair_iaslab_navigation)/config/costmap_local.yaml" command="load" ns="local_costmap" />
         <param name="local_costmap/width" value="10.0"/>

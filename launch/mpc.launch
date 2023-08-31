@@ -67,4 +67,7 @@
         
     </node>
 
+    <node pkg="wheelchair_iaslab_planer" type="wheelchair_iaslab_mpc.py" name="wheelchair_iaslab_mpc" output="screen"/>
+
+
 </launch>
