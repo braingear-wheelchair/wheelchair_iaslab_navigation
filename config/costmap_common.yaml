@@ -35,7 +35,7 @@ laser_layer_temp:
   transform_tolerance:   0.2    # seconds
   mapping_mode:          false  # default off, saves map not for navigation
   map_save_duration:     60     #default 60s, how often to autosave
-  observation_sources:  laser_left laser_right laser_camera stereo_camera
+  observation_sources:  laser_left laser_right # laser_camera stereo_camera
   
   laser_left:
     data_type: LaserScan
@@ -63,31 +63,31 @@ laser_layer_temp:
     voxel_filter: true           #default off, apply voxel filter to sensor, recommend on
     voxel_min_points: 0
     
-  laser_camera:
-    data_type: LaserScan
-    topic: /laser_camera
-    marking: true
-    clearing: true
-    observation_persistence: 0.0
-    expected_update_rate: 0.0    #default 0, if not updating at this rate at least, remove from buffer
-    observation_persistence: 0.0 #default 0, use all measurements taken during now-value, 0=latest
-    inf_is_valid: false          #default false, for laser scans
-    clear_after_reading: true    #default false, clear the buffer after the layer gets readings from it
-    voxel_filter: true           #default off, apply voxel filter to sensor, recommend on
-    voxel_min_points: 0          #default 0, minimum points per voxel for voxel filter
-    
-  stereo_camera:
-    data_type: LaserScan
-    topic: /stereo_camera
-    marking: true
-    clearing: true
-    observation_persistence: 0.0
-    expected_update_rate: 0.0    #default 0, if not updating at this rate at least, remove from buffer
-    observation_persistence: 0.0 #default 0, use all measurements taken during now-value, 0=latest
-    inf_is_valid: false          #default false, for laser scans
-    clear_after_reading: true    #default false, clear the buffer after the layer gets readings from it
-    voxel_filter: true           #default off, apply voxel filter to sensor, recommend on
-    voxel_min_points: 0          #default 0, minimum points per voxel for voxel filter
+#  laser_camera:
+#    data_type: LaserScan
+#    topic: /laser_camera
+#    marking: true
+#    clearing: true
+#    observation_persistence: 0.0
+#    expected_update_rate: 0.0    #default 0, if not updating at this rate at least, remove from buffer
+#    observation_persistence: 0.0 #default 0, use all measurements taken during now-value, 0=latest
+#    inf_is_valid: false          #default false, for laser scans
+#    clear_after_reading: true    #default false, clear the buffer after the layer gets readings from it
+#    voxel_filter: true           #default off, apply voxel filter to sensor, recommend on
+#    voxel_min_points: 0          #default 0, minimum points per voxel for voxel filter
+#    
+#  stereo_camera:
+#    data_type: LaserScan
+#    topic: /stereo_camera
+#    marking: true
+#    clearing: true
+#    observation_persistence: 0.0
+#    expected_update_rate: 0.0    #default 0, if not updating at this rate at least, remove from buffer
+#    observation_persistence: 0.0 #default 0, use all measurements taken during now-value, 0=latest
+#    inf_is_valid: false          #default false, for laser scans
+#    clear_after_reading: true    #default false, clear the buffer after the layer gets readings from it
+#    voxel_filter: true           #default off, apply voxel filter to sensor, recommend on
+#    voxel_min_points: 0          #default 0, minimum points per voxel for voxel filter
 
     
 #cost_scaling_factor and inflation_radius were now moved to the inflation_layer ns
