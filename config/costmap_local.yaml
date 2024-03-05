@@ -1,4 +1,4 @@
-global_frame: odom
+global_frame: wcias_odom
 #robot_base_frame: base_link
 rolling_window: true
 

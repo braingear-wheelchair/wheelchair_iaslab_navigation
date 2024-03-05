@@ -60,8 +60,10 @@
         <param name="global_costmap/global_frame" value="$(arg odom_frame)" unless="$(arg static_map)"/>
         <param name="global_costmap/global_frame" value="$(arg global_frame)" if="$(arg static_map)"/>
         <param name="global_costmap/robot_base_frame" value="$(arg base_frame)"/>
+
         <!-- <param name="DWAPlannerROS/global_frame_id" value="$(arg odom_frame)"/> -->
         <!--<remap from="cmd_vel" to="$(arg cmd_vel_topic)" /> -->
+        
         <remap from="cmd_vel" to="www_cmd_vel" />
         <remap from="odom" to="$(arg odom_topic)" />
         
