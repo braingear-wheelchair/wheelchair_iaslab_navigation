@@ -5,4 +5,4 @@ ProximityPlanner:
     angle_inc: 0.17453293005625406
     range_min: 0
     range_max: 4.1
-    min_cost: 130
+    min_cost: 200
