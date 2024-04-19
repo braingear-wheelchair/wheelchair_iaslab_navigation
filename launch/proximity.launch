@@ -3,7 +3,8 @@
     <!-- Parameters-->
     <arg name="prefix" default="wcias_"/>
     <arg name="static_map" default="false"/>
-    
+
+    <!-- TODO: move to MPC global planner -->
     <arg name="base_global_planner" default="navfn/NavfnROS"/>
     <arg name="base_local_planner" default="wheelchair_iaslab_proximityplanner/ProximityPlanner"/>
 
@@ -11,11 +12,12 @@
     <arg name="odom_frame" default="$(arg prefix)odom"/>
     <arg name="base_frame" default="$(arg prefix)base_footprint"/>
 
-    <arg name="cmd_vel_topic" default="www_cmd_vel"/>  <!-- using twist mux -->
     <arg name="odom_topic" default="/odometry/filtered"/>
     <arg name="repellors_topic" default="proximity_grid/attractors"/>
 
     <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+
+        <param name="controller_frequency" value='50' />
         
         <param name="base_global_planner" value="$(arg base_global_planner)"/> 
         <param name="base_local_planner"  value="$(arg base_local_planner)"/> 
@@ -25,7 +27,8 @@
         <!-- observation sources located in costmap_common.yaml -->
         <rosparam file="$(find wheelchair_iaslab_navigation)/config/costmap_common.yaml" command="load" ns="global_costmap" />
         <rosparam file="$(find wheelchair_iaslab_navigation)/config/costmap_common.yaml" command="load" ns="local_costmap" />
-        
+
+        <!-- Load repellor pf planner config -->
         <rosparam file="$(find wheelchair_iaslab_navigation)/config/repellors_pf.yaml" command="load" />
 
         <!-- local costmap, needs size -->
@@ -50,14 +53,8 @@
         <param name="global_costmap/global_frame" value="$(arg global_frame)" if="$(arg static_map)"/>
         <param name="global_costmap/robot_base_frame" value="$(arg base_frame)"/>
 
-        <!-- <param name="DWAPlannerROS/global_frame_id" value="$(arg odom_frame)"/> -->
-        <!--<remap from="cmd_vel" to="$(arg cmd_vel_topic)" /> -->
-        
-        <remap from="cmd_vel" to="$(arg cmd_vel_topic)" />
         <remap from="odom"    to="$(arg odom_topic)" />
 
-        <!-- <remap from="repellors" to="$(arg repellors_topic)" /> -->
-        
     </node>
 
 </launch>
