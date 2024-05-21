@@ -5,7 +5,8 @@
     <arg name="static_map" default="false"/>
     
     <arg name="base_global_planner" default="navfn/NavfnROS"/>
-    <arg name="base_local_planner" default="dwa_local_planner/DWAPlannerROS"/> 
+    <arg name="base_local_planner" default="teb_local_planner/TebLocalPlannerROS"/>
+
 
     <!-- 
         Other local planner: 
@@ -87,7 +88,6 @@
         <param name="global_costmap/robot_base_frame" value="$(arg base_frame)"/>
         <param name="DWAPlannerROS/global_frame_id" value="$(arg odom_frame)"/>
 
-        <remap from="cmd_vel" to="$(arg cmd_vel_topic)" />
         <remap from="odom" to="$(arg odom_topic)" />
 
         <remap from="global_plan" to="$(arg odom_topic)" />
