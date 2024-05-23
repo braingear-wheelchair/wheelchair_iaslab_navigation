@@ -3,11 +3,11 @@ ProximityPlanner:
     angle_min: -3.141592653589793
     angle_max: 3.141592653589793
     angle_inc: 0.17453293005625406
-    range_min: 0.1
+    range_min: 0.0
     range_max: 4.1
     min_cost: 253
-    repellor_angular_strength: 2.5
-    repellor_angular_decay: 0.35
+    repellor_angular_strength: 2.6
+    repellor_angular_decay: 22  
     vel_linear_min: 0.11
     vel_linear_max: 0.2
     vel_angular_min: 0.08
@@ -16,4 +16,4 @@ ProximityPlanner:
     rel_verts_y: [ 0.35, 0.35,-0.35,-0.35, 0.0 ]
     arrival_radius: 0.6
     sampling_distance: 0.3
-    safe_distance: 0.38
+    safe_distance: 0.45
