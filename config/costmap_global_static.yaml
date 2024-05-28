@@ -1,9 +1,0 @@
-global_frame: wcias_odom
-rolling_window: false
-track_unknown_space: true
-
-plugins:
-  - {name: laser_layer_temp,     type: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"}
-  - {name: half_layer,           type: "half_layer::HalfLayer"}
-  #- {name: static_layer,    type: "costmap_2d::StaticLayer"}
-  #- {name: inflation_layer, type: "costmap_2d::InflationLayer"}
