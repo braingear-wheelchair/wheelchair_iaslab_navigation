@@ -25,7 +25,7 @@
         <rosparam file="$(find wheelchair_iaslab_navigation)/config/planner.yaml" command="load"/>
 
         <!-- observation sources located in costmap_common.yaml -->
-        <rosparam file="$(find wheelchair_iaslab_navigation)/config/costmap_common.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find wheelchair_iaslab_navigation)/config/costmap_global.yaml" command="load" ns="global_costmap" />
         <rosparam file="$(find wheelchair_iaslab_navigation)/config/costmap_common.yaml" command="load" ns="local_costmap" />
 
         <!-- Load repellor pf planner config -->

@@ -4,5 +4,6 @@ track_unknown_space: true
 
 plugins:
   - {name: laser_layer_temp,     type: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"}
-  - {name: static_layer,    type: "costmap_2d::StaticLayer"}
-  - {name: inflation_layer, type: "costmap_2d::InflationLayer"}
+  - {name: half_layer,           type: "half_layer::HalfLayer"}
+  #- {name: static_layer,    type: "costmap_2d::StaticLayer"}
+  #- {name: inflation_layer, type: "costmap_2d::InflationLayer"}

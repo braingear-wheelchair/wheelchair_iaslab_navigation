@@ -8,7 +8,7 @@ ProximityPlanner:
     min_cost: 253
     repellor_angular_strength: 2.6
     repellor_angular_decay: 22  
-    vel_linear_min: 0.11
+    vel_linear_min: 0.09
     vel_linear_max: 0.2
     vel_angular_min: 0.08
     vel_angular_max: 0.22
