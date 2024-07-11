@@ -1,4 +1,4 @@
-footprint: [[-0.63, -0.30], [-0.63, 0.30], [0.73,0.30], [0.73, -0.30]] #[[-0.30, -0.63], [-0.30, 0.63], [0.30,0.63], [0.30, -0.63]] # if the robot is not circular
+#footprint: [[-0.63, -0.30], [-0.63, 0.30], [0.73,0.30], [0.73, -0.30]] #[[-0.30, -0.63], [-0.30, 0.63], [0.30,0.63], [0.30, -0.63]] # if the robot is not circular
 footprint_padding: 0.01
 
 robot_base_frame: wcias_base_footprint #base_link in husky tutorial
@@ -16,7 +16,7 @@ raytrace_range: 6.0 #3.0 in marrtino tutorial
 
 # The same of the local, only with a greater decay
 
-laser_layer_temp:
+laser_layer:
   enabled:               true
   voxel_decay:           10.75     #seconds if linear, e^n if exponential
   decay_model:           0      #0=linear, 1=exponential, -1=persistent

@@ -3,5 +3,5 @@ rolling_window: true
 track_unknown_space: true
 
 plugins:
-  - {name: laser_layer_temp, type: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"}
-  - {name: half_layer,       type: "half_layer::HalfLayer"}
+  - {name: laser_layer, type: "spatio_temporal_voxel_layer/SpatioTemporalVoxelLayer"}
+  - {name: half_layer,  type: "half_layer::HalfLayer"}

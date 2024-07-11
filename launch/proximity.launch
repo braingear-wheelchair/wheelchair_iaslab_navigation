@@ -6,7 +6,7 @@
 
     <!-- TODO: move to MPC global planner -->
     <arg name="base_global_planner" default="navfn/NavfnROS"/>
-    <arg name="base_local_planner" default="wheelchair_iaslab_proximityplanner/ProximityPlanner"/>
+    <arg name="base_local_planner"  default="wheelchair_iaslab_proximityplanner/ProximityPlanner"/>
 
     <arg name="global_frame" default="$(arg prefix)map"/>
     <arg name="odom_frame" default="$(arg prefix)odom"/>
@@ -15,7 +15,7 @@
     <arg name="odom_topic" default="/odometry/filtered"/>
     <arg name="repellors_topic" default="proximity_grid/attractors"/>
 
-    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <node pkg="move_base" type="move_base" respawn="true" name="move_base" >
 
         <param name="controller_frequency" value='50' />
         
@@ -42,6 +42,44 @@
 
         <remap from="odom"    to="$(arg odom_topic)" />
 
+        <remap from="cmd_vel" to="move_base/cmd_vel" />
     </node>
+
+    <arg name="mpc_local_planner" default="wheelchair_iaslab_planer/MyLocalPlanner"/>
+    <arg name="cmd_vel_topic" default="www_cmd_vel"/>  <!-- using twist mux -->
+
+    <node pkg="move_base" type="move_base" respawn="true" name="move_base_mpc" >
+        
+        <param name="base_global_planner" value="$(arg base_global_planner)"/> 
+        <param name="base_local_planner"  value="$(arg mpc_local_planner)"/> 
+
+        <!-- observation sources located in costmap_common.yaml -->
+        <rosparam file="$(find wheelchair_iaslab_navigation)/config/costmap_global_laser.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find wheelchair_iaslab_navigation)/config/costmap_local_laser.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find wheelchair_iaslab_navigation)/config/costmap_global.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find wheelchair_iaslab_navigation)/config/costmap_local.yaml" command="load" ns="local_costmap" />
+
+        <!-- TODO: instead to recompute link it to the oter one-->
+        <rosparam file="$(find wheelchair_iaslab_navigation)/config/costmap_converter.yaml" command="load" />
+	
+        <!-- On marrtino move_base but not on husky move_base-->
+        <param name="local_costmap/robot_base_frame" value="$(arg base_frame)"/>
+        <param name="local_costmap/global_frame"     value="$(arg odom_frame)"/>
+        
+        <!-- On marrtino move_base but not on husky move_base-->
+        <param name="global_costmap/global_frame"     value="$(arg odom_frame)"   unless="$(arg static_map)"/>
+        <param name="global_costmap/global_frame"     value="$(arg global_frame)" if="$(arg static_map)"/>
+        <param name="global_costmap/robot_base_frame" value="$(arg base_frame)"/>
+
+        <!-- Remap some -->        
+        <remap from="cmd_vel" to="$(arg cmd_vel_topic)" />
+        <remap from="odom" to="$(arg odom_topic)" />
+        
+    </node>
+
+    <node pkg="wheelchair_iaslab_planer" type="wheelchair_iaslab_mpc.py" name="wheelchair_iaslab_mpc" output="screen" >
+        <remap from="local_plan" to="/move_base/NavfnROS/plan" />
+    </node>
+
 
 </launch>

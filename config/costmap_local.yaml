@@ -1,4 +1,4 @@
-footprint: [[-0.63, -0.30], [-0.63, 0.30], [0.73,0.30], [0.73, -0.30]] #[[-0.30, -0.63], [-0.30, 0.63], [0.30,0.63], [0.30, -0.63]] # if the robot is not circular
+# footprint: [[-0.63, -0.30], [-0.63, 0.30], [0.73,0.30], [0.73, -0.30]] #[[-0.30, -0.63], [-0.30, 0.63], [0.30,0.63], [0.30, -0.63]] # if the robot is not circular
 footprint_padding: 0.01
 
 robot_base_frame: wcias_base_footprint #base_link in husky tutorial
@@ -65,24 +65,6 @@ laser_layer_temp:
     clear_after_reading: false    #default false, clear the buffer after the layer gets readings from it
     voxel_filter: true           #default off, apply voxel filter to sensor, recommend on
     voxel_min_points: 0
-    
-# 2D laser layer to clear the map in the visible area
-#obstacle_layer:
-#  enabled: true
-#  observation_sources: laser_left laser_right
-
-    #  laser_left:
-    #data_type: LaserScan
-    #topic: /scan_left
-    #clearing: true
-    #making: true
-
-    #laser_right:
-    #data_type: LaserScan
-    #topic: /scan_right
-    #clearing: true
-    #making: true
-
 
 #cost_scaling_factor and inflation_radius were now moved to the inflation_layer ns
 inflation_layer:
